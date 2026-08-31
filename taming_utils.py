@@ -1,4 +1,3 @@
-
 import asyncio
 import aiohttp
 import json
@@ -13,12 +12,14 @@ class OpenAIBatchProcessor:
     def __init__(
         self,
         api_key: str,
+        api_url: str = "https://api.openai.com/v1/chat/completions",
         max_requests_per_minute: int = 1500,  # 50% of the default 3000 limit
         max_tokens_per_minute: int = 125000,  # 50% of the default 250000 limit
         max_retries: int = 5,
         cooldown_period: int = 15  # seconds to wait after rate limit error
     ):
         self.api_key = api_key
+        self.api_url = api_url
         self.max_requests_per_minute = max_requests_per_minute
         self.max_tokens_per_minute = max_tokens_per_minute
         self.max_retries = max_retries
@@ -100,10 +101,11 @@ class OpenAIBatchProcessor:
         
         # Consume capacity
         self._consume_capacity(request)
+        self.total_requests += 1
         
         try:
             async with session.post(
-                "https://api.openai.com/v1/chat/completions",
+                self.api_url,
                 headers={
                     "Authorization": f"Bearer {self.api_key}",
                     "Content-Type": "application/json"
