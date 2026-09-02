@@ -1,3 +1,5 @@
 .env
 .venv
 __pycache__
+data/alignment/combined_dpo_dataset/cache
+data/alignment/combined_dpo_dataset/*.arrow
