@@ -17,7 +17,7 @@ DPO_CONFIG_PATH = Path("data/alignment/dpo_config.yaml")
 TRAINING_RESULTS_DIR = Path("smolk12_dpo_output")
 FINAL_MODEL_DIR = TRAINING_RESULTS_DIR / "final"
 
-MAX_STEPS = 2 # 200 
+MAX_STEPS = 200
 WARMUP_STEPS = 50
 PUSH_TO_HUB = False
 FINETUNE_TAGS = ["from_SmolLM2-360M-Instruct"]
