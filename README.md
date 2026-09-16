@@ -1,18 +1,16 @@
 # SmolLM2 K-12 Alignment with DPO
 
 I decided to do this project while reading the book *Large Language Models:
-The Hard Parts* while being unemployed :D
+The Hard Parts*
 
-Before that, I worked as an Instructional Designer for 3+ years. I was very
-committed to what I used to do, and in three years I produced more than 200
-lessons in different disciplines, mainly for the Computing Vertical. The
-quality of those lessons was also developing together with my experience.
+Before that, I worked as an Instructional Designer for 3+ years. I produced more than 200
+lessons in different disciplines, mainly for the Computing Vertical.
 
 One day, we used the OpenAI platform and, instead of creating a LLM for our
-students, we attached many, many lessons to the agent, wrote the instructions,
-and connected it to the learning platform.
+students, we attached many, many lessons there, wrote the instructions,
+and connected it to the learning platform. Now, I feel that perhaps I could use my skills to have a real learning agent!
 
-Two years later, I decided to go deeper and create a small language model for
+So, I created a small language model for
 an imaginary company that produces computing courses for K-12 students. The
 model should help students learn while following an explicit classroom content
 safety policy.
@@ -153,16 +151,14 @@ The main limitations are:
 The aligned model demonstrated both **under-refusal** on unsafe requests and
 **over-refusal** on acceptable fictional or educational requests.
 
-## Next steps
+## Possible steps to improve  my results
 
-1. Audit rows where `score_aligned == 0.1` and trace them back to their original
-   `chosen/rejected` training pairs.
-2. Regenerate `chosen` responses using the open source model.
-3. Validate synthetic preference pairs with a judge before training.
-4. Create a genuinely held-out safety and regression test set.
-5. Train for longer and compare checkpoints instead of trusting one run.
-6. Package inference with FastAPI and Docker, then deploy a private demo with
-   authentication, logging, monitoring, and a rollback plan.
+1. Validate DPO dataset composition s with a judge before training as there are no experts, but manually verify the part
+2. Choice of the base model. Try out some models with more advanced capabilities like Llama 3+ or Qwen families
+3. The evaluation methodology: first judge flags potential bad responses, I verify; OR the eval against standard benchmark 
+4. First paramater tuning, and then train for longer and compare checkpoints instead of trusting one run.
+5. Split the dataset for fine tuning and eval
+
 
 ## Running the project
 
